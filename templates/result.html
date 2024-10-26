@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Recommendation Result</title>
+    <style>
+        /* Additional styles specific to the result page */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+        .comparison-table th {
+            background-color: #f2f2f2;
+            color: #48648D;
+        }
+        .savings {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-background">
+        <video id="bg-video" autoplay muted loop>
+            <source src="{{ url_for('static', path='videos/background.mov') }}" type="video/quicktime">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+    </div>
+    <div class="content">
+        <h1><img src="{{ url_for('static', path='images/logo.png') }}" alt="Jetset Pilates"></h1>
+        <h2>Your Recommendation Results</h2>
+        <div class="container">
+            <div class="block">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Option</th>
+                            <th>Monthly Cost</th>
+                            <th>Cost per Class</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Current Package: {{ current_package }}</td>
+                            <td>{{ current_monthly_cost }}</td>
+                            <td>{{ current_cost_per_class }}</td>
+                        </tr>
+                        <tr>
+                            <td>Best Membership: {{ membership_name }}</td>
+                            <td>{{ membership_total_cost }}</td>
+                            <td>{{ membership_cost_per_class }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="savings">
+                {{ savings_text }}
+            </div>
+            <a href="/" class="back-button">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>

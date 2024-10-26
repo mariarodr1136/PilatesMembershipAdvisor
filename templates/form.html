@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>Jetset Pilates Package Recommendation</title>
+</head>
+<body>
+    <div class="video-background">
+        <video autoplay muted loop id="bg-video">
+            <source src="{{ url_for('static', path='videos/background.mov') }}" type="video/quicktime">
+            Your browser does not support the video tag.
+        </video>
+        <div class="overlay"></div>
+    </div>
+    <div class="content">
+        <h1><img src="{{ url_for('static', path='images/logo.png') }}" alt="Jetset Pilates"></h1>
+        <h2>Find Your Ideal Membership</h2>
+        <div class="container">
+            <form action="/recommend" method="post">
+                <div class="input-group package-select">
+                    <select id="current_package" name="current_package" required>
+                        <option value="" disabled selected>Select your package</option>
+                        <option value="Single Class">Single Class ($38 per class)</option>
+                        <option value="3-Class Pack">3-Class Pack ($99 for 3 classes)</option>
+                        <option value="10-Class Pack">10-Class Pack ($299 for 10 classes)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="number" id="classes_per_month" name="classes_per_month" placeholder="Enter number of classes per month" min="1" required>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

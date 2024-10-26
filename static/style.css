@@ -1,0 +1,316 @@
+/* Global Styles */
+body {
+    font-family: Montserrat, sans-serif;
+    background-color: transparent;
+    color: #343a40;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.container {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 20px;
+    background-color: rgb(238, 238, 238);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgb(64, 83, 125);
+    border-radius: 8px;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+h1, h2 {
+    color: #ffffff;
+}
+
+h3, h4 {
+    color: #48648D;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0 10px;
+}
+
+h1 img {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+h2 img {
+    width: 30%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #48648D;
+}
+
+/* Input Fields */
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    justify-content: 100px; /* Align items to the right */
+}
+
+.input-group label {
+    margin-left: 10px; /* Add space between dropdown and label */
+    flex: 0 0 auto; /* Prevent label from growing */
+}
+
+.input-group select,
+.input-group input[type="number"] {
+    flex: 1; /* Allow the input elements to grow */
+    max-width: 70%; /* Limit the width of the input elements */
+    appearance: none;
+    background-color: rgb(218, 218, 218);
+    border: 2px solid rgb(64, 83, 125);
+    box-sizing: border-box;
+    color: rgb(72, 100, 141);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    height: 54px;
+    padding: 16px;
+    width: 100%;
+    margin: 0;
+    text-align: start;
+    -webkit-font-smoothing: antialiased;
+}
+
+.input-group input[type="number"]::placeholder {
+    color: rgb(72, 100, 141);
+    opacity: 1;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Button Styles */
+form button, .back-button {
+    padding: 7px 14px;
+    background-color: #ffffff;
+    color: #48648D;
+    border: 2px solid rgb(72, 100, 141);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    position: relative;
+    transition: all 0.3s;
+    overflow: hidden;
+    font-family: Montserrat, sans-serif; /* Ensures the same font family */
+    font-weight: 395; /* Same font weight */
+}
+
+/* Adjust initial padding */
+form button {
+    padding-right: 15px; /* Ensure there's enough space for the '>' sign */
+}
+
+.back-button {
+    padding-left: 15px; /* Ensure there's enough space for the '<' sign */
+}
+
+/* Arrow positioning */
+form button::after {
+    content: ">";
+    position: absolute;
+    right: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #48648D;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+.back-button::after {
+    content: "<";
+    position: absolute;
+    left: 11px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: #48648D;
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+}
+
+/* Expand to the right on hover for form button */
+form button:hover {
+    padding-right: 30px; /* Increase padding to expand button to the right */
+}
+
+.back-button:hover {
+    padding-left: 30px; /* Increase padding to expand button to the left */
+}
+
+/* Show arrow and adjust position on hover */
+form button:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-1px); /* Move the '>' sign slightly to the right */
+}
+
+.back-button:hover::after {
+    opacity: 1;
+    transform: translateY(-50%) translateX(-1px); /* Move the '<' sign slightly to the left */
+}
+
+form button:hover, .back-button:hover {
+    background-color: #eeeeee;
+    border-color: transparent;
+}
+
+/* Background Video and Overlay */
+.video-background {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 14, 32, 0.67);
+    z-index: 0;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center;
+    color: #3a3a3a;
+    padding: 5px;
+    max-width: 550px;
+    width: 85%;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 100;
+}
+
+/* Block Styles */
+.block {
+    max-width: 550px;
+    margin: 10px;
+    padding: 2px;
+    background-color: rgba(236, 236, 236, 0.98);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgb(64, 83, 125);
+    border-radius: 5px;
+    text-align: center;
+    z-index: 1;
+}
+
+/* Adjustments for h3 and h4 */
+h4 {
+    color: #48648D;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 10px 0 10px;
+}
+
+/* Ensure back-button styles fit the layout */
+.back-button {
+    display: inline-block;
+    margin: 10px 0;
+    text-decoration: none;
+}
+
+/* Thinner text styles */
+.thin-text {
+    font-weight: 100; /* Or another lighter weight if available */
+}
+
+/* adjusting the space */
+
+.no-background h2 {
+    margin: 1px 0; /* Adjust to reduce space above and below the headings */
+}
+
+.no-background h2 img {
+    width: 30%;
+    height: auto;
+    display: block;
+    /* Center image */
+    /* Adjust space below the image */
+    margin: 0 auto 1px;
+}
+
+/* Additional styles for the reminder */
+
+ .reminder-text {
+    font-size: 0.8em; /* Smaller font size */
+    color: #666; /* Light grey color for the text */
+    margin-top: 10px; /* Space above the reminder text */
+}
+/* ... previous CSS rules ... */
+
+/* Package select specific styles */
+.package-select {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.package-select select {
+    width: 70%; /* Adjust this value as needed */
+    max-width: 300px; /* Adjust this value as needed */
+    appearance: none;
+    background-color: rgb(218, 218, 218);
+    border: 2px solid rgb(64, 83, 125);
+    box-sizing: border-box;
+    color: rgb(72, 100, 141);
+    font-family: Montserrat, sans-serif;
+    font-size: 16px;
+    height: 54px;
+    padding: 16px;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Style for the dropdown arrow */
+.package-select::after {
+    content: '\25BC';
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: rgb(72, 100, 141);
+}
+
+/* Adjusting other input groups if needed */
+.input-group:not(.package-select) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group:not(.package-select) input {
+    width: 70%;
+    max-width: 300px;
+}
+
+/* ... rest of your CSS remains the same ... */
