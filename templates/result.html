@@ -36,21 +36,21 @@
         <div class="overlay"></div>
     </div>
     <div class="content">
-        <h1><img src="{{ url_for('static', path='images/logo.png') }}" alt="Jetset Pilates"></h1>
+        <h1><img src="{{ url_for('static', path='images/logo.png') }}" alt="Pilates"></h1>
         <h2>Your Recommendation Results</h2>
         <div class="container">
             <div class="block">
                 <table class="comparison-table">
                     <thead>
                         <tr>
-                            <th>Option</th>
+                            <th>Options</th>
                             <th>Monthly Cost</th>
                             <th>Cost per Class</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>Current Package: {{ current_package }}</td>
+                            <td>Best Package: {{ current_package }}</td>
                             <td>{{ current_monthly_cost }}</td>
                             <td>{{ current_cost_per_class }}</td>
                         </tr>

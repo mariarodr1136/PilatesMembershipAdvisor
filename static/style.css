@@ -1,4 +1,3 @@
-/* Global Styles */
 body {
     font-family: Montserrat, sans-serif;
     background-color: transparent;
@@ -10,7 +9,7 @@ body {
 
 .container {
     max-width: 600px;
-    margin: 60px auto;
+    margin: 30px auto;
     padding: 20px;
     background-color: rgb(238, 238, 238);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -21,9 +20,16 @@ body {
     z-index: 1;
 }
 
-h1, h2 {
+h1 {
     color: #ffffff;
+    margin: 0px 0; /* Adjust space below the logo */
 }
+
+h2 {
+    color: #ffffff;
+    margin: 0px 0; /* Adjust space above the input container */
+}
+
 
 h3, h4 {
     color: #48648D;
@@ -33,7 +39,7 @@ h3, h4 {
 }
 
 h1 img {
-    width: 50%;
+    width: 30%;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -51,38 +57,6 @@ label {
     margin-bottom: 10px;
     font-weight: bold;
     color: #48648D;
-}
-
-/* Input Fields */
-.input-group {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    justify-content: 100px; /* Align items to the right */
-}
-
-.input-group label {
-    margin-left: 10px; /* Add space between dropdown and label */
-    flex: 0 0 auto; /* Prevent label from growing */
-}
-
-.input-group select,
-.input-group input[type="number"] {
-    flex: 1; /* Allow the input elements to grow */
-    max-width: 70%; /* Limit the width of the input elements */
-    appearance: none;
-    background-color: rgb(218, 218, 218);
-    border: 2px solid rgb(64, 83, 125);
-    box-sizing: border-box;
-    color: rgb(72, 100, 141);
-    font-family: Montserrat, sans-serif;
-    font-size: 16px;
-    height: 54px;
-    padding: 16px;
-    width: 100%;
-    margin: 0;
-    text-align: start;
-    -webkit-font-smoothing: antialiased;
 }
 
 .input-group input[type="number"]::placeholder {
@@ -104,20 +78,16 @@ form button, .back-button {
     position: relative;
     transition: all 0.3s;
     overflow: hidden;
-    font-family: Montserrat, sans-serif; /* Ensures the same font family */
-    font-weight: 395; /* Same font weight */
-}
-
-/* Adjust initial padding */
-form button {
-    padding-right: 15px; /* Ensure there's enough space for the '>' sign */
+    font-family: Montserrat, sans-serif; 
+    font-weight: 395; 
+    margin-top: 15px; 
+    padding-right: 15px; 
 }
 
 .back-button {
-    padding-left: 15px; /* Ensure there's enough space for the '<' sign */
+    padding-left: 15px; 
 }
 
-/* Arrow positioning */
 form button::after {
     content: ">";
     position: absolute;
@@ -144,22 +114,22 @@ form button::after {
 
 /* Expand to the right on hover for form button */
 form button:hover {
-    padding-right: 30px; /* Increase padding to expand button to the right */
+    padding-right: 30px; 
 }
 
 .back-button:hover {
-    padding-left: 30px; /* Increase padding to expand button to the left */
+    padding-left: 30px; 
 }
 
 /* Show arrow and adjust position on hover */
 form button:hover::after {
     opacity: 1;
-    transform: translateY(-50%) translateX(-1px); /* Move the '>' sign slightly to the right */
+    transform: translateY(-50%) translateX(-1px); 
 }
 
 .back-button:hover::after {
     opacity: 1;
-    transform: translateY(-50%) translateX(-1px); /* Move the '<' sign slightly to the left */
+    transform: translateY(-50%) translateX(-1px); 
 }
 
 form button:hover, .back-button:hover {
@@ -210,9 +180,8 @@ form button:hover, .back-button:hover {
     font-weight: 100;
 }
 
-/* Block Styles */
 .block {
-    max-width: 550px;
+    max-width: px;
     margin: 10px;
     padding: 2px;
     background-color: rgba(236, 236, 236, 0.98);
@@ -240,43 +209,30 @@ h4 {
 
 /* Thinner text styles */
 .thin-text {
-    font-weight: 100; /* Or another lighter weight if available */
+    font-weight: 100; 
 }
 
-/* adjusting the space */
-
 .no-background h2 {
-    margin: 1px 0; /* Adjust to reduce space above and below the headings */
+    margin: 1px 0; 
 }
 
 .no-background h2 img {
     width: 30%;
     height: auto;
     display: block;
-    /* Center image */
-    /* Adjust space below the image */
     margin: 0 auto 1px;
 }
 
-/* Additional styles for the reminder */
-
  .reminder-text {
-    font-size: 0.8em; /* Smaller font size */
-    color: #666; /* Light grey color for the text */
-    margin-top: 10px; /* Space above the reminder text */
-}
-/* ... previous CSS rules ... */
-
-/* Package select specific styles */
-.package-select {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    font-size: 0.8em; 
+    color: #666; 
+    margin-top: 10px; 
 }
 
-.package-select select {
-    width: 70%; /* Adjust this value as needed */
-    max-width: 300px; /* Adjust this value as needed */
+/* Adjusting the input field */
+.input-group input[type="number"] {
+    width: 40%; 
+    max-width: 100px; 
     appearance: none;
     background-color: rgb(218, 218, 218);
     border: 2px solid rgb(64, 83, 125);
@@ -286,20 +242,10 @@ h4 {
     font-size: 16px;
     height: 54px;
     padding: 16px;
-    text-align: center;
+    text-align: start;
     -webkit-font-smoothing: antialiased;
 }
 
-/* Style for the dropdown arrow */
-.package-select::after {
-    content: '\25BC';
-    position: absolute;
-    top: 50%;
-    right: 15px;
-    transform: translateY(-50%);
-    pointer-events: none;
-    color: rgb(72, 100, 141);
-}
 
 /* Adjusting other input groups if needed */
 .input-group:not(.package-select) {
@@ -309,8 +255,6 @@ h4 {
 }
 
 .input-group:not(.package-select) input {
-    width: 70%;
-    max-width: 300px;
+    width: 100%;
+    max-width: 900px;
 }
-
-/* ... rest of your CSS remains the same ... */

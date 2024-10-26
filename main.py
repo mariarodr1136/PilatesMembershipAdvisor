@@ -2,16 +2,12 @@ from fastapi import FastAPI, Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from pydantic import BaseModel
-from typing import Optional
 from starlette.requests import Request
 
 # Initialize the FastAPI app
 app = FastAPI()
-
 # Serve static files from the "static" directory
 app.mount("/static", StaticFiles(directory="static"), name="static")
-
 # Set up Jinja2 for rendering HTML templates
 templates = Jinja2Templates(directory="templates")
 
@@ -30,48 +26,55 @@ monthly_memberships = {
     "Monthly Unlimited Membership": {"price": 299, "classes_per_month": 30},
 }
 
-# Route to show the form
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     return templates.TemplateResponse("form.html", {"request": request})
 
-# Route to process form submissions
 @app.post("/recommend", response_class=HTMLResponse)
-async def recommend(request: Request,
-                    current_package: str = Form(...),
-                    classes_per_month: int = Form(...)):
-    # Calculate current monthly cost based on current package
-    if current_package == "Single Class":
-        current_monthly_cost = classes_per_month * packages["Single Class"]["price_per_class"]
-        current_cost_per_class = packages["Single Class"]["price_per_class"]
-    else:
-        pack_info = packages[current_package]
-        pack_price = pack_info["total_price"]
-        pack_classes = pack_info["classes"]
-        # Calculate how many packs needed to cover classes_per_month
-        num_packs = (classes_per_month + pack_classes - 1) // pack_classes  # Ceiling division
-        current_monthly_cost = num_packs * pack_price
-        current_cost_per_class = current_monthly_cost / classes_per_month
+async def recommend(request: Request, classes_per_month: int = Form(...)):
+    # Calculate cost with single classes
+    current_package = "Single Class"
+    current_monthly_cost = classes_per_month * packages[current_package]["price_per_class"]
+    current_cost_per_class = packages[current_package]["price_per_class"]
 
     # Find the best membership option based on classes_per_month
-    # Calculate cost for each membership option and choose the one with the lowest total cost
-    membership_options = []
-    for name, info in monthly_memberships.items():
-        if classes_per_month <= info["classes_per_month"]:
-            membership_cost = info["price"]
-        else:
-            # If the membership classes are less than needed, calculate multiple memberships
-            num_memberships = (classes_per_month + info["classes_per_month"] - 1) // info["classes_per_month"]
-            membership_cost = num_memberships * info["price"]
-        membership_options.append((name, membership_cost, info["classes_per_month"]))
+    best_membership = None
+    best_cost = float('inf')
+    best_cost_per_class = 0
 
-    # Choose the membership with the lowest total cost
-    best_membership = min(membership_options, key=lambda x: x[1])
-    membership_name, membership_total_cost, membership_classes_per_month = best_membership
-    membership_cost_per_class = membership_total_cost / classes_per_month
+    # First, filter memberships that can accommodate the requested number of classes
+    valid_memberships = {
+        name: info for name, info in monthly_memberships.items()
+        if info["classes_per_month"] >= classes_per_month or name == "Monthly Unlimited Membership"
+    }
+
+    if valid_memberships:
+        # Find the cheapest valid membership
+        for name, info in valid_memberships.items():
+            membership_cost = info["price"]
+            cost_per_class = membership_cost / classes_per_month
+            
+            if membership_cost < best_cost:
+                best_cost = membership_cost
+                best_membership = name
+                best_cost_per_class = cost_per_class
+    else:
+        # If no single membership can accommodate the classes, calculate multiple memberships
+        best_membership = "Multiple Memberships Required"
+        
+        # Find the most cost-effective combination of memberships
+        for name, info in monthly_memberships.items():
+            if info["classes_per_month"] > 0:  # Skip unlimited for multiple calculation
+                num_memberships = (classes_per_month + info["classes_per_month"] - 1) // info["classes_per_month"]
+                total_cost = num_memberships * info["price"]
+                
+                if total_cost < best_cost:
+                    best_cost = total_cost
+                    best_membership = f"{num_memberships}x {name}"
+                    best_cost_per_class = best_cost / classes_per_month
 
     # Calculate potential savings
-    savings = current_monthly_cost - membership_total_cost
+    savings = current_monthly_cost - best_cost
 
     # Determine if the user is saving or spending more
     if savings > 0:
@@ -86,25 +89,15 @@ async def recommend(request: Request,
         "current_package": current_package,
         "current_monthly_cost": f"${current_monthly_cost:.2f}",
         "current_cost_per_class": f"${current_cost_per_class:.2f}",
-        "membership_name": membership_name,
-        "membership_total_cost": f"${membership_total_cost:.2f}",
-        "membership_cost_per_class": f"${membership_cost_per_class:.2f}",
+        "membership_name": best_membership,
+        "membership_total_cost": f"${best_cost:.2f}",
+        "membership_cost_per_class": f"${best_cost_per_class:.2f}",
         "savings_text": savings_text,
         "classes_per_month": classes_per_month
     })
-
-# Route to handle POST requests for creating items (Unchanged)
-@app.post("/items/")
-async def create_item(item: BaseModel):
-    item_dict = item.dict()
-    if 'tax' in item_dict and item.tax:
-        item_dict["price_with_tax"] = item.price + item.tax
-    return item_dict
-
 
 # to open site
 # http://127.0.0.1:8000/
 
 # to reload site
 # uvicorn main:app --reload
-
