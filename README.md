@@ -35,11 +35,10 @@ The purpose of this application is to:
 - **Cost Comparison**: The app provides a comparison between single-class pricing and membership options.
 
 ## Code Structure
-- **static/**: Contains CSS, images, videos, and other static files.
-- **templates/**: Holds the Jinja2 HTML templates for rendering pages.
+- **static**: Contains CSS, images, videos, and other static files.
+- **templates**: Holds the Jinja2 HTML templates for rendering pages.
 - **main.py**: The main FastAPI application file that handles routing and logic.
 - **style.css**: Styles for the application.
-- **background.mov**: Background video used in the application.
 
 ## Installation
 1. Clone the repository:
