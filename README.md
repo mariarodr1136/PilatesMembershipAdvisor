@@ -28,7 +28,9 @@ The purpose of this application is to:
 - Provide users with an easy way to determine the best Pilates membership options based on their expected attendance.
 - Offer an engaging and interactive user experience with a clean, modern design.
 
-![IMG_9162](https://github.com/user-attachments/assets/27c04cde-f3cf-4769-a113-0066a4ce6de6)
+<img width="1461" alt="Screenshot 2024-10-26 at 8 01 13 PM" src="https://github.com/user-attachments/assets/8879c7db-4581-4a6b-a11e-9c6c594c6625">
+
+<img width="1461" alt="Screenshot 2024-10-26 at 8 03 04 PM" src="https://github.com/user-attachments/assets/15239644-124c-4863-8a8b-1aa8295fc2f3">
 
 ## Features
 - **Membership Recommendation System**: Users input the number of classes they plan to attend, and the app calculates the best membership options.
