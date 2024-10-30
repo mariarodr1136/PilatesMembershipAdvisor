@@ -3,6 +3,9 @@
 ## Overview
 PilatesMembershipAdvisor is a web application designed to help users find their ideal Pilates membership options based on their anticipated class attendance. This interactive platform allows users to input the number of classes they plan to attend each month and receive tailored recommendations on the most cost-effective membership packages.
 
+![HTML](https://img.shields.io/badge/HTML-HTML-orange) ![CSS](https://img.shields.io/badge/CSS-CSS-blue) ![JavaScript](https://img.shields.io/badge/JavaScript-JavaScript-yellow) ![FastAPI](https://img.shields.io/badge/FastAPI-FastAPI-blueviolet) ![Jinja2](https://img.shields.io/badge/Jinja2-Jinja2-green) ![Uvicorn](https://img.shields.io/badge/Uvicorn-Uvicorn-lightblue)
+
+
 ## Table of Contents
 - [Overview](#overview)
 - [Languages & Frameworks Used](#languages--frameworks-used)
